@@ -1,0 +1,4 @@
+# Different spaces
+
+Open `index.html` in the browser and study its source code to understand what causes the differnt rendering of the two rows.
+
