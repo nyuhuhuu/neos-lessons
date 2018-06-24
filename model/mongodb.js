@@ -42,7 +42,7 @@ class Book {
         });
     }
 
-    delete() {
+    remove() {
         return new Promise((resolve, reject) => {
             db.collection('books').remove({_id: ObjectID(this.id)}, err => {
                 if (err) {
@@ -76,4 +76,8 @@ class Book {
     }
 }
 
-module.exports = Book;
+class BookShelf {
+    // TODO
+}
+
+module.exports = { Book, BookShelf };

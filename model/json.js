@@ -40,7 +40,7 @@ class Book {
         });
     }
 
-    delete() {
+    remove() {
         return new Promise((resolve, reject) => {
             Book.find()
                 .then(books => {
@@ -107,4 +107,8 @@ class Book {
     }
 }
 
-module.exports = Book;
+class BookShelf {
+    // TODO
+}
+
+module.exports = { Book, BookShelf };
