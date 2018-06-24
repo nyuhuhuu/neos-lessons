@@ -16,6 +16,11 @@ class Book {
                     if (this.id == null) {
                         this.id = Book._generateBookId(books);
                         books.push(this);
+                    } else {
+                        let id = books.findIndex(book => {
+                            return book.id == this.id;
+                        });
+                        books[id] = this;
                     }
                     let items = {};
                     books.forEach(function(book) {

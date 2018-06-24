@@ -15,3 +15,7 @@ echo
 echo -e "${C}Adding new book${NC}"
 curl -X POST -d "title=Test+Driven+Development:+By+Example&isbn13=9780321146533&bookshelf=3" $SERVICE_URL/books
 echo
+
+echo -e "${C}Updating new book${NC}"
+curl -X PUT -d "bookshelf=3" $SERVICE_URL/books/2
+echo
