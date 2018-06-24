@@ -1,4 +1,4 @@
-const Book = require('./model.js');
+const Book = require('./model/json.js');
 
 module.exports = function(app) {
 
