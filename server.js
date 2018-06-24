@@ -1,3 +1,4 @@
+const config = require('./config');
 const express = require('express');
 const app = express();
 const bodyParser = require('body-parser');
@@ -8,4 +9,5 @@ require('./routes.js')(app);
 
 app.listen(3000, () => {
     console.log('Book API service listening on port 3000!');
+    console.log(`Using database store ${config.store}`);
 });

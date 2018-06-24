@@ -1,5 +1,6 @@
-const Book = require('./model/mongoose').Book;
-const BookShelf = require('./model/mongoose').BookShelf;
+const config = require('./config');
+const Book = require('./model/' + config.store).Book;
+const BookShelf = require('./model/' + config.store).BookShelf;
 
 module.exports = function(app) {
 
