@@ -3,27 +3,25 @@ const dbBooksFile = './data/books.json';
 
 class Book {
     constructor(bookData) {
+        if ('id' in bookData) {
+            this.id = bookData.id;
+        }
         this.title = bookData.title;
         this.isbn13 = bookData.isbn13;
-        this.bookShelf = bookData.bookShelf;
+        this.bookShelf = bookData.bookshelf;
     }
 
     save() {
         return new Promise((resolve, reject) => {
             Book.find()
                 .then(books => {
-                    const newBook = {
-                        id: Book._generateBookId(books),
-                        title: this.title,
-                        isbn13: this.isbn13,
-                        bookshelf: this.bookShelf
-                    };
-                    books.push(newBook);
-                    jsonfile.writeFile(dbBooksFile, books, {spaces: 4}, function (err) {
+                    this.id = Book._generateBookId(books);
+                    books.push(this);
+                    jsonfile.writeFile(dbBooksFile, books, {spaces: 4}, err => {
                         if (err) {
                             reject(err);
                         } else {
-                            resolve(newBook);
+                            resolve(this);
                         }
                     });
                 })
@@ -55,7 +53,7 @@ class Book {
                 if (err) {
                     reject(err);
                 }
-                resolve(books);
+                resolve(books.map(bookData => new Book(bookData)));
             });
         });
     }

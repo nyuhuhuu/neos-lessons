@@ -26,7 +26,7 @@ module.exports = function(app) {
         const book = new Book({
             title: req.body.title,
             isbn13: req.body.isbn13,
-            bookShelf: req.body.bookshelf
+            bookshelf: req.body.bookshelf
         });
         book.save()
             .then(newBook => {
@@ -39,7 +39,7 @@ module.exports = function(app) {
 
     app.put('/books/:bookId', (req, res) => {
         Book.findById(req.params.bookId)
-            .then(book => {
+            .then(bookData => {
                 book.bookShelf = req.body.bookshelf;
                 book.save()
                     .then(newBook => {
