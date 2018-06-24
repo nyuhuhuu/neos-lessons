@@ -1,0 +1,15 @@
+[
+    {
+        "id": 1,
+        "label": "To read"
+    },
+    {
+        "id": 2,
+        "label": "Currently reading",
+        "limit": 1
+    },
+    {
+        "id": 3,
+        "label": "Read"
+    }
+]
