@@ -3,18 +3,18 @@
         "id": "1",
         "title": "The Cathedral and the Bazaar",
         "isbn13": "9780596001087",
-        "bookshelf": 1
+        "bookshelf": "1"
     },
     "2": {
         "id": "2",
         "title": "Interaction of Color",
         "isbn13": "9780300115956",
-        "bookshelf": 2
+        "bookshelf": "2"
     },
     "3": {
         "id": "3",
         "title": "JavaScript: The Good Parts",
         "isbn13": "9780596517748",
-        "bookshelf": 3
+        "bookshelf": "3"
     }
 }
