@@ -39,8 +39,8 @@ module.exports = function(app) {
 
     app.put('/books/:bookId', (req, res) => {
         Book.findById(req.params.bookId)
-            .then(bookData => {
-                book.bookShelf = req.body.bookshelf;
+            .then(book => {
+                book.bookshelf = req.body.bookshelf;
                 book.save()
                     .then(newBook => {
                         res.json(newBook);

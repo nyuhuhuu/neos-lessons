@@ -3,21 +3,25 @@ const dbBooksFile = './data/books.json';
 
 class Book {
     constructor(bookData) {
-        if ('id' in bookData) {
-            this.id = bookData.id;
-        }
+        this.id = bookData.id || null;
         this.title = bookData.title;
         this.isbn13 = bookData.isbn13;
-        this.bookShelf = bookData.bookshelf;
+        this.bookshelf = bookData.bookshelf;
     }
 
     save() {
         return new Promise((resolve, reject) => {
             Book.find()
                 .then(books => {
-                    this.id = Book._generateBookId(books);
-                    books.push(this);
-                    jsonfile.writeFile(dbBooksFile, books, {spaces: 4}, err => {
+                    if (this.id == null) {
+                        this.id = Book._generateBookId(books);
+                        books.push(this);
+                    }
+                    let items = {};
+                    books.forEach(function(book) {
+                        items[book.id] = book;
+                    });
+                    jsonfile.writeFile(dbBooksFile, items, {spaces: 4}, err => {
                         if (err) {
                             reject(err);
                         } else {
@@ -49,11 +53,15 @@ class Book {
 
     static find() {
         return new Promise((resolve, reject) => {
-            jsonfile.readFile(dbBooksFile, function(err, books) {
+            jsonfile.readFile(dbBooksFile, function(err, items) {
                 if (err) {
                     reject(err);
                 }
-                resolve(books.map(bookData => new Book(bookData)));
+                let books = [];
+                for (let id in items) {
+                    books.push(new Book({id: id, ...items[id]}));
+                }
+                resolve(books);
             });
         });
     }
