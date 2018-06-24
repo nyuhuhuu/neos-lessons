@@ -43,13 +43,13 @@ module.exports = function(app) {
         Book.findById(req.params.bookId)
             .then(book => {
                 book.bookshelf = req.body.bookshelf;
-                book.save()
-                    .then(newBook => {
-                        res.json(newBook);
-                    })
-                    .catch(err => {
-                        res.status(400).send({'ok': 0, 'message': err});
-                    });
+                return book.save();
+            })
+            .then(newBook => {
+                res.json(newBook);
+            })
+            .catch(err => {
+                res.status(400).send({'ok': 0, 'message': err});
             });
 
     });
@@ -57,13 +57,13 @@ module.exports = function(app) {
     app.delete('/books/:bookId', (req, res) => {
         Book.findById(req.params.bookId)
             .then(book => {
-                book.remove().
-                    then(() => {
-                        res.json({'ok': 1});
-                    })
-                    .catch(err => {
-                        res.status(400).send({'ok': 0, 'message': err});
-                    });
+                return book.remove();
+            })
+            .then(() => {
+                res.json({'ok': 1});
+            })
+            .catch(err => {
+                res.status(400).send({'ok': 0, 'message': err});
             });
     });
 
