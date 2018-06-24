@@ -1,5 +1,8 @@
+const mongoose = require('mongoose');
 const Book = require('../model/mongoose.js').Book;
 const BookShelf = require('../model/mongoose.js').BookShelf;
+
+let asyncTracker = [];
 
 function insertBooks() {
     const docs = [
@@ -24,7 +27,7 @@ function insertBooks() {
     ];
     docs.forEach(doc => {
         const book = new Book(doc);
-        book.save();
+        asyncTracker.push(book.save());
     });
 }
 
@@ -43,10 +46,15 @@ function insertBookShelves() {
     ];
     docs.forEach(doc => {
         const bookShelf = new BookShelf(doc);
-        bookShelf.save();
+        asyncTracker.push(bookShelf.save());
     });
-
 }
 
 insertBooks();
 insertBookShelves();
+
+Promise.all(asyncTracker).then(values => {
+    // TODO this module should do separate data connection
+    console.log('Book and Bookshelf items successfuly inserted.');
+    mongoose.connection.close();
+});
