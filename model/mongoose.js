@@ -26,4 +26,4 @@ const bookShelfSchema = mongoose.Schema({
 const Book = mongoose.model('Book', bookSchema);
 const BookShelf = mongoose.model('BookShelf', bookShelfSchema, 'bookshelves');
 
-module.exports = Book;
+module.exports = { Book, BookShelf };
