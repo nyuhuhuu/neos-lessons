@@ -6,8 +6,6 @@ NC='\033[0m'
 TEST_DB=./data/books.json
 BACKUP_DB=${TEST_DB}.backup
 
-cp $TEST_DB $BACKUP_DB
-
 echo -e "${C}Getting all the books${NC}"
 curl -X GET $SERVICE_URL/books
 echo
@@ -27,6 +25,4 @@ echo
 echo -e "${C}Deleting book${NC}"
 curl -X DELETE $SERVICE_URL/books/3
 echo
-
-mv $BACKUP_DB $TEST_DB
 

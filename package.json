@@ -5,14 +5,16 @@
   "main": "server.js",
   "scripts": {
     "start": "nodemon server.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "postinstall": "node scripts/install_sqlite.js"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
     "body-parser": "^1.18.3",
     "express": "^4.16.3",
-    "jsonfile": "^4.0.0"
+    "jsonfile": "^4.0.0",
+    "sqlite3": "^4.0.1"
   },
   "devDependencies": {
     "nodemon": "^1.17.5"
