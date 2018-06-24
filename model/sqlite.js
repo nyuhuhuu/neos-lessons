@@ -71,7 +71,6 @@ class Book {
                 if (err) {
                     reject(err);
                 }
-                console.log(row);
                 resolve(new Book(row));
             });
         });
