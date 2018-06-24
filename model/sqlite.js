@@ -39,7 +39,7 @@ class Book {
         });
     }
 
-    delete() {
+    remove() {
         return new Promise((resolve, reject) => {
             const book = this;
             const sql = `DELETE FROM books WHERE id = ?;`;
