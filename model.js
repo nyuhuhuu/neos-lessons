@@ -42,6 +42,24 @@ class Book {
 
     delete() {
         return new Promise((resolve, reject) => {
+            Book.find()
+                .then(books => {
+                    let items = {};
+                    books.forEach(function(book) {
+                        items[book.id] = book;
+                    });
+                    delete items[this.id];
+                    jsonfile.writeFile(dbBooksFile, items, {spaces: 4}, err => {
+                        if (err) {
+                            reject(err);
+                        } else {
+                            resolve(this);
+                        }
+                    });
+                })
+                .catch(err => {
+                    reject(err);
+                });
         });
     }
 

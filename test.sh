@@ -24,5 +24,9 @@ echo -e "${C}Updating new book${NC}"
 curl -X PUT -d "bookshelf=3" $SERVICE_URL/books/2
 echo
 
+echo -e "${C}Deleting book${NC}"
+curl -X DELETE $SERVICE_URL/books/3
+echo
+
 mv $BACKUP_DB $TEST_DB
 
