@@ -22,10 +22,13 @@ class Book {
                         });
                         books[id] = this;
                     }
+
+                    // convert list to key-value store for JSON output
                     let items = {};
                     books.forEach(function(book) {
                         items[book.id] = book;
                     });
+
                     jsonfile.writeFile(dbBooksFile, items, {spaces: 4}, err => {
                         if (err) {
                             reject(err);
@@ -44,6 +47,7 @@ class Book {
         return new Promise((resolve, reject) => {
             Book.find()
                 .then(books => {
+                    // convert list to key-value store for JSON output
                     let items = {};
                     books.forEach(function(book) {
                         items[book.id] = book;
@@ -108,7 +112,7 @@ class Book {
 }
 
 class BookShelf {
-    // TODO
+    // TODO: implement BookShelf model
 }
 
 module.exports = { Book, BookShelf };

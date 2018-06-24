@@ -42,6 +42,7 @@ module.exports = function(app) {
     app.put('/books/:bookId', (req, res) => {
         Book.findById(req.params.bookId)
             .then(book => {
+                // TODO: handle all possible properties
                 book.bookshelf = req.body.bookshelf;
                 return book.save();
             })
