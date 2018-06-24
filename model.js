@@ -10,12 +10,43 @@ class Book {
 
     save() {
         return new Promise((resolve, reject) => {
+            Book.find()
+                .then(books => {
+                    const newBook = {
+                        id: Book._generateBookId(books),
+                        title: this.title,
+                        isbn13: this.isbn13,
+                        bookshelf: this.bookShelf
+                    };
+                    books.push(newBook);
+                    jsonfile.writeFile(dbBooksFile, books, {spaces: 4}, function (err) {
+                        if (err) {
+                            reject(err);
+                        } else {
+                            resolve(newBook);
+                        }
+                    });
+                })
+                .catch(err => {
+                    reject(err);
+                });
         });
     }
 
     delete() {
         return new Promise((resolve, reject) => {
         });
+    }
+
+    static _generateBookId(books) {
+        let maxId = null;
+        books.forEach(function(book) {
+            let bookId = parseInt(book.id);
+            if (bookId > maxId) {
+                maxId = bookId;
+            }
+        });
+        return maxId + 1;
     }
 
     static find() {

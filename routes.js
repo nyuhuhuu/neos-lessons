@@ -29,8 +29,8 @@ module.exports = function(app) {
             bookShelf: req.body.bookshelf
         });
         book.save()
-            .then(() => {
-                res.json(book);
+            .then(newBook => {
+                res.json(newBook);
             })
             .catch(err => {
                 res.status(400).send({'ok': 0, 'message': err});
@@ -42,8 +42,8 @@ module.exports = function(app) {
             .then(book => {
                 book.bookShelf = req.body.bookshelf;
                 book.save()
-                    .then(() => {
-                        res.json(book);
+                    .then(newBook => {
+                        res.json(newBook);
                     })
                     .catch(err => {
                         res.status(400).send({'ok': 0, 'message': err});
