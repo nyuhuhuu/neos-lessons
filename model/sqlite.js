@@ -78,4 +78,8 @@ class Book {
     }
 }
 
-module.exports = Book;
+class BookShelf {
+    // TODO
+}
+
+module.exports = { Book, BookShelf };
