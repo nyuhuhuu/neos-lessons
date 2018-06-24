@@ -1,4 +1,4 @@
-const Book = require('./model/sqlite.js');
+const Book = require('./model/mongodb.js');
 
 module.exports = function(app) {
 
