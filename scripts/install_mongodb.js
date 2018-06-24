@@ -13,16 +13,19 @@ MongoClient.connect(config.mongoDbUrl, (err, client) => {
     db.createCollection('books', err => {
         const docs = [
             {
+                _id: "5b2ff54c5953638f51215f0f",
                 "title": "The Cathedral and the Bazaar",
                 "isbn13": "9780596001087",
                 "bookshelf": "1"
             },
             {
+                _id: "5b2ff54c5953638f51215f10",
                 "title": "Interaction of Color",
                 "isbn13": "9780300115956",
                 "bookshelf": "2"
             },
             {
+                _id: "5b2ff54c5953638f51215f11",
                 "title": "JavaScript: The Good Parts",
                 "isbn13": "9780596517748",
                 "bookshelf": "3"

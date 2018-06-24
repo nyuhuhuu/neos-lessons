@@ -39,7 +39,7 @@ class Book {
         });
     }
 
-    delete() {
+    remove() {
         return new Promise((resolve, reject) => {
             const book = this;
             const sql = `DELETE FROM books WHERE id = ?;`;
@@ -71,11 +71,14 @@ class Book {
                 if (err) {
                     reject(err);
                 }
-                console.log(row);
                 resolve(new Book(row));
             });
         });
     }
 }
 
-module.exports = Book;
+class BookShelf {
+    // TODO
+}
+
+module.exports = { Book, BookShelf };

@@ -67,7 +67,7 @@ class Book {
 
     static findById(id) {
         return new Promise((resolve, reject) => {
-            db.collection('books').findOne({_id: ObjectID(id)}, function(err, doc) {
+            db.collection('books').findOne({_id: id}, function(err, doc) {
                 if (err) {
                     reject(err);
                 }
