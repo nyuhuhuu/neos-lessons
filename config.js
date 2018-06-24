@@ -1,3 +1,4 @@
 module.exports = {
-    mongoDbUrl: 'mongodb://127.0.0.1:27017/nodedb'
+    mongoDbUrl: 'mongodb://127.0.0.1:27017/nodedb',
+    mongoDbName: 'nodedb'
 };

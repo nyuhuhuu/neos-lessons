@@ -1,13 +1,14 @@
 const MongoClient = require('mongodb').MongoClient;
 const ObjectID = require('mongodb').ObjectID;
+const config = require('./../config');
 
 let db;
 
-MongoClient.connect('mongodb://127.0.0.1:27017', (err, client) => {
+MongoClient.connect(config.mongoDbUrl, (err, client) => {
     if (err) {
         console.error(err.message);
     }
-    db = client.db('test');
+    db = client.db(config.mongoDbName);
     console.log('Successfully connected to the books database.');
 });
 
