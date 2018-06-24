@@ -12,6 +12,16 @@ module.exports = function(app) {
             });
     });
 
+    app.get('/books/:bookId', (req, res) => {
+        Book.findById(req.params.bookId)
+            .then(book => {
+                res.json(book);
+            })
+            .catch(err => {
+                res.status(400).send({'ok': 0, 'message': err});
+            });
+    });
+
     app.post('/books', (req, res) => {
         const book = new Book({
             title: req.body.title,
