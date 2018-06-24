@@ -1,4 +1,4 @@
-const Book = require('./model/mongodb.js');
+const Book = require('./model/mongoose');
 
 module.exports = function(app) {
 
@@ -55,7 +55,7 @@ module.exports = function(app) {
     app.delete('/books/:bookId', (req, res) => {
         Book.findById(req.params.bookId)
             .then(book => {
-                book.delete().
+                book.remove().
                     then(() => {
                         res.json({'ok': 1});
                     })

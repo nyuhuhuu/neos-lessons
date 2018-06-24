@@ -40,7 +40,7 @@ class Book {
         });
     }
 
-    delete() {
+    remove() {
         return new Promise((resolve, reject) => {
             Book.find()
                 .then(books => {
