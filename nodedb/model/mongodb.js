@@ -58,7 +58,7 @@ class Book {
         return new Promise((resolve, reject) => {
             db.collection('books').find().toArray(function(err, docs) {
                 if (err) {
-                    reject(err);
+                    return reject(err);
                 }
                 resolve(docs.map(doc => new Book({id: doc._id, ...doc})));
             });
@@ -69,7 +69,7 @@ class Book {
         return new Promise((resolve, reject) => {
             db.collection('books').findOne({_id: id}, function(err, doc) {
                 if (err) {
-                    reject(err);
+                    return reject(err);
                 }
                 resolve(new Book({id: doc._id, ...doc}));
             });

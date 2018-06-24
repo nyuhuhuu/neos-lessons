@@ -31,10 +31,9 @@ class Book {
 
                     jsonfile.writeFile(dbBooksFile, items, {spaces: 4}, err => {
                         if (err) {
-                            reject(err);
-                        } else {
-                            resolve(this);
+                            return reject(err);
                         }
+                        resolve(this);
                     });
                 })
                 .catch(err => {
@@ -55,10 +54,9 @@ class Book {
                     delete items[this.id];
                     jsonfile.writeFile(dbBooksFile, items, {spaces: 4}, err => {
                         if (err) {
-                            reject(err);
-                        } else {
-                            resolve(this);
+                            return reject(err);
                         }
+                        resolve(this);
                     });
                 })
                 .catch(err => {
@@ -82,7 +80,7 @@ class Book {
         return new Promise((resolve, reject) => {
             jsonfile.readFile(dbBooksFile, function(err, items) {
                 if (err) {
-                    reject(err);
+                    return reject(err);
                 }
                 let books = [];
                 for (let id in items) {
@@ -99,10 +97,9 @@ class Book {
                 .then(books => {
                     const result = books.filter(book => book.id == id);
                     if (result.length > 1) {
-                        reject("Multiple items found");
-                    } else {
-                        resolve(result[0]);
+                        return reject("Multiple items found");
                     }
+                    resolve(result[0]);
                 })
                 .catch(err => {
                     reject(err);
